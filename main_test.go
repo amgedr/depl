@@ -27,3 +27,31 @@ func TestIsDisposableDomain(t *testing.T) {
 		}
 	}
 }
+
+func TestIsEmailDisposable(t *testing.T) {
+	checks := map[string]bool{
+		"qwerty@gmail.com":        false,
+		"qwerty@123-m.com":        true,
+		"qwerty@yahoo.com":        false,
+		"qwerty@20minutemail.com": true,
+		"@21cn.com":               false,
+		"zomg.info":               false,
+		"":                        false,
+	}
+
+	for email, val := range checks {
+		c, err := IsEmailDisposable(email)
+		if email == "" && err != ErrEmptyString {
+			t.Error("Empty string should return an error")
+			continue
+		}
+
+		if (email == "@21cn.com" || email == "zomg.info") && err != ErrInvalidEmail {
+			t.Errorf("%s should return: %s", email, ErrInvalidEmail.Error())
+		}
+
+		if c != val {
+			t.Errorf("%s should not be %v", email, val)
+		}
+	}
+}
