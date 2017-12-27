@@ -2,7 +2,7 @@
 Short for disposable email providers list, is a Go package for checking email addresses against a list of disposable email provider domains.
 
 ## Usage
-* Download and install the package:  
+* Download and install the package:
 ```
 go get github.com/codehill/depl
 ```
@@ -12,31 +12,32 @@ package main
 
 import (
 	"fmt"
+	"log"
 
-	"github.com/codehill/depl"
+	"github.com/amgedr/depl"
 )
 
 func main() {
-	if check, err := depl.IsDomainDisposable("example.com"); err == nil {
-		if check {
-			fmt.Println("Domain name is in depl list")
-		} else {
-			fmt.Println("Domain name is not in depl")
-		}
-
-	} else {
-		fmt.Println(err)
+	check, err := depl.IsDomainDisposable("example.com")
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	if check, err := depl.IsEmailDisposable("example@example.com"); err == nil {
-		if check {
-			fmt.Println("Domain name is in depl list")
-		} else {
-			fmt.Println("Domain name is not in depl")
-		}
-
+	if check {
+		fmt.Println("Domain name is in depl list")
 	} else {
-		fmt.Println(err)
+		fmt.Println("Domain name is not in depl")
+	}
+
+	check, err = depl.IsEmailDisposable("example@example.com")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if check {
+		fmt.Println("Domain name is in depl list")
+	} else {
+		fmt.Println("Domain name is not in depl")
 	}
 }
 ```

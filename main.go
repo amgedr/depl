@@ -23,9 +23,8 @@ func IsDomainDisposable(dom string) (bool, error) {
 
 	if i < len(Domains) && Domains[i] == dom {
 		return true, nil
-	} else {
-		return false, nil
 	}
+	return false, nil
 }
 
 //IsEmailDisposable searches the list of the disposable email providers
@@ -43,6 +42,5 @@ func IsEmailDisposable(email string) (bool, error) {
 	if len(parts[0]) == 0 || len(parts[1]) == 0 {
 		return false, ErrInvalidEmail
 	}
-
 	return IsDomainDisposable(parts[1])
 }

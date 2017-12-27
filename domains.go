@@ -1,5 +1,6 @@
 package depl
 
+// Domains is a list of the domain names used to create disposable addresses
 var Domains []string = []string{
 	"0815.ru",
 	"0clickemail.com",
