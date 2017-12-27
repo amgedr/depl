@@ -1,4 +1,7 @@
 # depl
+
+[![Build Status](https://travis-ci.org/amgedr/depl.svg?branch=master)](https://travis-ci.org/amgedr/depl)
+
 Short for disposable email providers list, is a Go package for checking email addresses against a list of disposable email provider domains.
 
 ## Usage

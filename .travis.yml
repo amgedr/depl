@@ -1,0 +1,12 @@
+go:
+  - 1.9
+  - master
+
+allow_failures:
+  - go: master
+
+fast_finish: true
+
+script:
+  - go test -v -race ./...
+  - go vet ./...
